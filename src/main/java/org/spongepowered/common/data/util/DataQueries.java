@@ -146,5 +146,8 @@ public final class DataQueries {
     public static final DataQuery FIREWORK_TRAILS = of("Trails");
     public static final DataQuery FIREWORK_FLICKERS = of("Flickers");
 
+    // Fluids
+    public static final DataQuery FLUID_TYPE = of("FluidType");
+
     private DataQueries() { }
 }
