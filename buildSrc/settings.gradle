@@ -1,0 +1,8 @@
+include ':SpongeAPI'
+
+def configureBuildSrc(String name) {
+    def project = project(name)
+    project.projectDir = new File(new File(project.parent.projectDir.getParentFile(), project.name), 'buildSrc');
+}
+
+configureBuildSrc(':SpongeAPI')
