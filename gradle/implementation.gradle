@@ -131,32 +131,6 @@ javadocJar {
     from common.tasks.javadoc.destinationDir
 }
 
-task sdkZip(type: Zip) {
-    enabled = false // project.file("sdk").exists()
-    classifier = 'sdk'
-
-    from fileTree("sdk");
-    rename ".*\\.gitignore", ".gitignore"
-    def apiVersion = "";
-    if (project.ext.has('forgeVersion'))
-        apiVersion = project.minecraft.version + "-" + project.ext.forgeVersion
-    eachFile { file ->
-        if (file.getName() == "build.gradle")
-        {
-           file.expand([
-                "mcVersion": project.minecraft.version,
-                "apiVersion": apiVersion,
-                "mappings": project.minecraft.mappings,
-                "version": project.version
-           ])
-        }
-    }
-}
-
 artifacts {
     archives deobfJar
-    // Include sdk ZIP only if it's actually supported for the implementation
-    if (sdkZip.enabled) {
-        archives sdkZip
-    }
 }
