@@ -99,6 +99,9 @@ public class SpongeConfig<T extends SpongeConfig.ConfigBase> {
     // EULA
     public static final String EULA_SHUTDOWN_SERVER = "shutdown-server";
 
+    // THREAD CHECK
+    public static final String THREAD_CHECK = "thread-check";
+
     // GENERAL
     public static final String GENERAL_DISABLE_WARNINGS = "disable-warnings";
     public static final String GENERAL_CHUNK_LOAD_OVERRIDE = "chunk-load-override";
@@ -130,6 +133,7 @@ public class SpongeConfig<T extends SpongeConfig.ConfigBase> {
     public static final String MODULE_ENTITY_ACTIVATION_RANGE = "entity-activation-range";
     public static final String MODULE_BUNGEECORD = "bungeecord";
     public static final String MODULE_SHUTDOWN_ON_EULA = "shutdown-on-eula";
+    public static final String MODULE_THREAD_CHECK = "thread-check";
 
     // WORLD
     public static final String WORLD_PVP_ENABLED = "pvp-enabled";
@@ -253,12 +257,19 @@ public class SpongeConfig<T extends SpongeConfig.ConfigBase> {
         @Setting(MODULE_SHUTDOWN_ON_EULA)
         private ShutdownOnEulaCategory eulaShutdown = new ShutdownOnEulaCategory();
 
+        @Setting(MODULE_THREAD_CHECK)
+        private ThreadCheckCategory threadCheck = new ThreadCheckCategory();
+
         public BungeeCordCategory getBungeeCord() {
             return this.bungeeCord;
         }
 
         public ShutdownOnEulaCategory getEulaShutdown() {
             return this.eulaShutdown;
+        }
+
+        public ThreadCheckCategory getThreadCheck() {
+            return this.threadCheck;
         }
 
         public SqlCategory getSql() {
@@ -577,6 +588,17 @@ public class SpongeConfig<T extends SpongeConfig.ConfigBase> {
 
         public boolean shouldShutdownServer() {
             return this.shutdownServer;
+        }
+    }
+
+    @ConfigSerializable
+    public static class ThreadCheckCategory extends Category {
+
+        @Setting(value = THREAD_CHECK, comment = "If enabled, add code to check for thread safety concerns")
+        private boolean threadCheck = false;
+
+        public boolean shouldThreadCheck() {
+            return this.threadCheck;
         }
     }
 

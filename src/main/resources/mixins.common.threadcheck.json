@@ -1,0 +1,10 @@
+{
+  "package": "org.spongepowered.common.mixin.threadcheck",
+  "refmap": "mixins.common.refmap.json",
+  "plugin": "org.spongepowered.common.mixin.plugin.ThreadCheckPlugin",
+  "mixins": [
+  ],
+  "server": [
+    "MixinWorld"
+  ]
+}
